@@ -272,24 +272,32 @@
                 CellAppendChild(row, 1, divObject);
             }
         }
-        function AddSubmitButton(row, caption, action, CauseValidation) {
+        // Row: Rangée dans le tableau dans laquelle le bouton sera inséré
+        // Caption: Titre du bouton
+        // Action: Page vers laquelle la soumission sera dirigée
+        // CauseValidation: booléen qui indique si il faut faut lancer la validation ou non
+        // confirmMessage: message pour la soumission conditionnelle à la confirmation de l'usager
+
+        function AddSubmitButton(row, caption, action, CauseValidation, confirmMessage) {
             buttonObject = document.createElement("button");
             buttonObject.innerHTML = caption;
             buttonObject.setAttribute("name", "action");
             buttonObject.setAttribute("value", action);
+            buttonObject.className = "submitBTN";
             CellAppendChild(row, 1, buttonObject);
-            if (CauseValidation) { 
-                buttonObject.onclick = function () {
-                    return CheckForEmptyInput();
+            if (CauseValidation) {
+                buttonObject.onclick = function () { return CheckForEmptyInput(); }
+            }
+            else {
+                if (confirmMessage != null) {
+                    buttonObject.onclick = function () { return confirm(confirmMessage); }
                 }
-            } else {
-                buttonObject.onclick = function () {
-                    return true;
+                else {
+                    buttonObject.onclick = function () { return true; }
                 }
-
             }
         }
-        
+
         function CheckForEmptyInput() {
             var canSubmit = true;
             var inputObjects = document.getElementsByTagName("input");
@@ -711,7 +719,7 @@
 
 
         function AddFileUpload(row, id) {
-            objectFileUpload = document.createElement("FileUpload");
+            objectFileUpload = document.createElement("panel");
             objectFileUpload.id = id;
             objectFileUpload.onchange = PreLoadImage;
 
@@ -733,11 +741,9 @@
 
             AddRadioButtonGroup(5, "Sexe:", "Sexe", "masculin", "féminin");
             AddRadioButtonGroup(6, "État civil:", "Etatcivil", "célibataire", "marié", "conjoint de fait", "séparé", "veuf");
-            AddFileUpload(6, "FU_Avatar");
             // la rangée 7 est volontairement sautée
-            AddSubmitButton(8, "Confirmer...", "confirm", true);
-            //AddSubmitButton(8, "Modifier...","edit",true);
-            //AddSubmitButton(9, "Effacer...","delete",false);
+            //AddSubmitButton(8, "Modifier...", "edit", true);
+            //AddSubmitButton(9, "Effacer...", "delete", false, "Êtes-vous sûr de vouloir effacer cet enregistrement?");
             AddSubmitButton(10, "Annuler...", "cancel", false);
             AddFileUpload(11, "FU_lel");
             InstallHighLiteEmptyDelegates();
@@ -776,12 +782,28 @@
     </style>
 </head>
 <body id="body">
-    <form id="form1" method="get" action="CreateUser.aspx">
+    <form id="form1" method="get" runat="server" action="CreateUser.aspx">
         <div>
             <script type="text/javascript">
                 BuildForm("form1");
             </script>
             <asp:Panel ID="PN_GridView" runat="server"></asp:Panel>
+            <h3>Inscription...</h3>
+            <hr />
+            <table>
+                <tr>
+                    <td rowspan="4">
+                        <asp:Image ID="IMG_Avatar" runat="server" CssClass="thumbnail" ImageUrl="~/Images/ADD.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:FileUpload ID="FU_Avatar" runat="server" onchange="PreLoadImage();" ClientIDMode="Static" />
+                    </td>
+                </tr>
+            </table>
+            <hr />
+            <br />
         </div>
     </form>
 </body>
