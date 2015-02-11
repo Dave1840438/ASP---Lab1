@@ -31,14 +31,14 @@ namespace ASP___Lab_1
         {
             // Création d'une nouvelle instance de Users (reliée à la table MainDB.Users)
             PersonnesTable users = new PersonnesTable((String)Application["MaindDB"], this);
-            users.InsertRecord(Request.Form["Prenom"],
-                               Request.Form["Nom"],
-                               Request.Form["Telephone"],
-                               Request.Form["CodePostal"],
-                               null,
-                               Request.Form["Naissance"],
-                               null,
-                               null);
+            users.InsertRecord(Request["Prenom"],
+                               Request["Nom"],
+                               Request["Telephone"],
+                               Request["CodePostal"],
+                               IMG_Avatar.ImageUrl,
+                               Request["Naissance"],
+                               Request["Sexe"],
+                               Request["EtatCivil"]);
         }
 
         private void InsertSetValueScript(Panel panel, PersonnesTable personne)

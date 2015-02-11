@@ -742,6 +742,7 @@
             AddRadioButtonGroup(5, "Sexe:", "Sexe", "masculin", "féminin");
             AddRadioButtonGroup(6, "État civil:", "Etatcivil", "célibataire", "marié", "conjoint de fait", "séparé", "veuf");
             // la rangée 7 est volontairement sautée
+            AddSubmitButton(8, "Soumettre...", "confirm", true);
             //AddSubmitButton(8, "Modifier...", "edit", true);
             //AddSubmitButton(9, "Effacer...", "delete", false, "Êtes-vous sûr de vouloir effacer cet enregistrement?");
             AddSubmitButton(10, "Annuler...", "cancel", false);
