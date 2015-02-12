@@ -789,7 +789,7 @@
     </style>
 </head>
 <body id="body">
-    <form id="form1" method="get" runat="server" action="CreateUser.aspx">
+    <form id="form1" method="post" runat="server" action="EditUser.aspx">
         <div>
             <script type="text/javascript">
                 BuildForm("form1");
