@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="ASP___Lab_1.Inscription" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inscription.aspx.cs" Inherits="ASP___Lab_1.Inscription" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -717,15 +717,6 @@
             }
         }
 
-
-        function AddFileUpload(row, id) {
-            objectFileUpload = document.createElement("panel");
-            objectFileUpload.id = id;
-            objectFileUpload.onchange = PreLoadImage;
-
-            CellAppendChild(row, 2, objectFileUpload);
-        }
-
         function BuildForm(targetFormID) {
             // création du div qui englobe le formulaire
 
@@ -746,7 +737,6 @@
             //AddSubmitButton(8, "Modifier...", "edit", true);
             //AddSubmitButton(9, "Effacer...", "delete", false, "Êtes-vous sûr de vouloir effacer cet enregistrement?");
             AddSubmitButton(10, "Annuler...", "cancel", false);
-            AddFileUpload(11, "FU_lel");
             InstallHighLiteEmptyDelegates();
         }
     </script>
@@ -783,7 +773,7 @@
     </style>
 </head>
 <body id="body">
-    <form id="form1" method="get" runat="server" action="CreateUser.aspx">
+    <form id="form1" method="post" runat="server" action="Inscription.aspx">
         <div>
             <script type="text/javascript">
                 BuildForm("form1");

@@ -11,15 +11,16 @@ namespace ASP___Lab_1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             //if (!Page.IsPostBack)
               //  LoadForm();
                String action = Request["action"];
             if (action == "cancel")
-                Response.Redirect("ListerPersonnes.aspx");
+                Response.Redirect("ListUsers.aspx");
             if (action == "confirm")
             {
                 AddPersonne();
-                Response.Redirect("ListerPersonnes.aspx");
+                Response.Redirect("ListUsers.aspx");
             }
            // if (action == "delete")
             //    DeleteCurrent();
@@ -31,11 +32,21 @@ namespace ASP___Lab_1
         {
             // Création d'une nouvelle instance de Users (reliée à la table MainDB.Users)
             PersonnesTable users = new PersonnesTable((String)Application["MaindDB"], this);
+
+            String Avatar_Path = "";
+            String avatar_ID = "";
+            if (FU_Avatar.FileName != "")
+            {
+               avatar_ID = Guid.NewGuid().ToString();
+               Avatar_Path = Server.MapPath(@"~\Avatars\") + avatar_ID + ".png";
+               FU_Avatar.SaveAs(Avatar_Path);
+            }
+
             users.InsertRecord(Request["Prenom"],
                                Request["Nom"],
                                Request["Telephone"],
                                Request["CodePostal"],
-                               IMG_Avatar.ImageUrl,
+                               avatar_ID,
                                Request["Naissance"],
                                Request["Sexe"],
                                Request["EtatCivil"]);
