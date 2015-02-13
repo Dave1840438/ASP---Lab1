@@ -795,7 +795,7 @@
                 BuildForm("form1");
             </script>
             <asp:Panel ID="PN_GridView" runat="server"></asp:Panel>
-            <h3>Inscription...</h3>
+            <h3>Modification...</h3>
             <hr />
             <table>
                 <tr>

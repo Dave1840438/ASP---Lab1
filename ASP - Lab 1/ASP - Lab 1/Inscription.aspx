@@ -787,9 +787,10 @@
                         <asp:Image ID="IMG_Avatar" runat="server" CssClass="thumbnail" ImageUrl="~/Images/ADD.png" />
                     </td>
                 </tr>
+                <tr />
                 <tr>
                     <td>
-                        <asp:FileUpload ID="FU_Avatar" runat="server" onchange="PreLoadImage();" ClientIDMode="Static" />
+                        <asp:FileUpload ID="FU_Avatar" runat="server" onchange="PreLoadImage();" ClientIDMode="Static"/>
                     </td>
                 </tr>
             </table>
